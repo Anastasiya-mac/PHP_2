@@ -1,16 +1,12 @@
 <?php
-namespace services;
+namespace app\services;
 
 class Autoloader
-{
-    public $paths = [
-        'models',
-        'services'
-    ];
+{   private $fileExrention = ".php";
 
     public function loadClass(string $classname)
-    {
-        $filename = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT'] . "/myFolder/{$classname}.php");
+    {   $classname = str_replace("app\\", ROOT_DIR, $classname);
+        $filename = str_replace('\\', '/', "{$classname}{$this->fileExrention}"); 
         if(file_exists($filename)) {
             require $filename;
             return true;
