@@ -11,7 +11,7 @@ class Db
         'host' => 'localhost' ,
         'login' => 'root' ,
         'password' => '',
-        'database' => 'GB_DB_PHP',
+        'database' => 'gb_db_php',
         'charset' => 'utf8',
     ];
 
@@ -33,6 +33,7 @@ class Db
         $pdoStatement = $this->query($sql, $params);
         $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $className);
         return $pdoStatement->fetchAll(); 
+
     }
 
     private function query(string $sql, array $params = []) {

@@ -1,18 +1,44 @@
 <?php
 namespace app\models;
 
-class Cart extends Model
+class Cart extends Record
 {
-    protected $id;
-    protected $product_id;
-    protected $user_id;
-    protected $price;
-    protected $count;
-    protected $discount;
+    public $id;
+    public $product_id;
+    public $user_id;
+    public $price;
+    public $count;
+    public $discount;
 
-    public function getTableName(): string
+       /**
+     * Cart constructor.
+     * @param $id
+     * @param $product_id
+     * @param $user_id
+     * @param $price
+     * @param $count
+     * @param $discount
+     */
+    public function __construct($id = null, $product_id = null, $user_id = null, $price = null, $count = null, $discount = null)
+    {
+        parent::__construct();
+        $this->id = $id;
+        $this->product_id = $product_id;
+        $this->user_id = $user_id;
+        $this->price = $price;
+        $this->count = $count;
+        $this->discount = $discount;
+    }
+
+
+    public static function getTableName(): string
     {
         return "cart";
+    }
+
+    public function addToCart($id)
+    {
+        
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-class Product extends Model
+class Product extends Record
 {
     public $id;
     public $name;
@@ -26,7 +26,7 @@ class Product extends Model
         $this->price = $price;
         $this->category_id = $category_id;
     }
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "product";
     }

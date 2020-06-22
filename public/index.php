@@ -6,22 +6,12 @@ require ROOT_DIR . "services/Autoloader.php";
 spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 
 
-$product = (new app\models\Product())->getById(4);
+$controllerName = $_GET['c'] ?: 'product';
+$controllerAction = $_GET['a'];
 
+$controllerClass = "app\controllers\\" . ucfirst($controllerName) . "Controller";
 
-$product->price = 9999;
-$product->name = "!test";
-$product->about = "example";
-$product->update();
-
-/*
-$product->delete();
-
-$product = new app\models\Product();
-
-$product->name = "счастье";
-$product->about = "платное";
-$product->price = 20000;
-$product->category_id = 3;
-
-$product->insert();*/
+if(class_exists($controllerClass)) {
+    $controller = new $controllerClass;
+    $controller -> runAction($controllerAction);
+}
